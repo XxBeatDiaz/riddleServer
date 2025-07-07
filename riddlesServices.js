@@ -32,6 +32,7 @@ async function updateRiddle(riddle) {
             if (currentRiddle.id === riddle.id) {
                 const idx = arrRiddles.indexOf(currentRiddle);
                 arrRiddles[idx] = riddle;
+                break;
             }
         }
     }
@@ -39,6 +40,19 @@ async function updateRiddle(riddle) {
     await DAL.writeDBFile(PATH, strRiddles)
 }
 
+async function deleteRiddle(riddleId) {
+    const arrRiddles = await DAL.readDBFile(PATH);
+    if (isRiddleExists(riddleId, arrRiddles)) {
+        for (const riddle of arrRiddles) {
+            if (riddle.id === riddleId) {
+                const idx = arrRiddles.indexOf(riddle);
+                arrRiddles.splice(idx, 1);
+            }
+        }
+    }
+    const strRiddles = JSON.stringify(arrRiddles, null, 2);
+    await DAL.writeDBFile(PATH, strRiddles)
+}
 
 //Helper func
 function isRiddleExists(riddleId, riddles) {
@@ -49,14 +63,3 @@ function isRiddleExists(riddleId, riddles) {
     }
     return false;
 }
-
-
-const riddle = {
-    id: 8,
-    type: "regular",
-    difficulty: "hard",
-    name: "Riddle science",
-    taskDescription: "What is the lightest element in the periodic table?",
-    correctAnswer: "hydrogen"
-}
-updateRiddle(riddle)
