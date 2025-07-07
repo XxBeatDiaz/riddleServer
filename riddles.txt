@@ -1,6 +1,6 @@
 [
   {
-    "id": "1",
+    "id": 1,
     "type": "regular",
     "difficulty": "easy",
     "name": "Riddle math",
@@ -8,7 +8,7 @@
     "correctAnswer": "8"
   },
   {
-    "id": "2",
+    "id": 2,
     "type": "regular",
     "difficulty": "easy",
     "name": "Riddle math",
@@ -16,7 +16,7 @@
     "correctAnswer": "21"
   },
   {
-    "id": "3",
+    "id": 3,
     "type": "regular",
     "difficulty": "medium",
     "name": "Riddle math",
@@ -24,7 +24,7 @@
     "correctAnswer": "49"
   },
   {
-    "id": "4",
+    "id": 4,
     "type": "regular",
     "difficulty": "hard",
     "name": "Riddle math",
@@ -32,7 +32,7 @@
     "correctAnswer": "8"
   },
   {
-    "id": "5",
+    "id": 5,
     "type": "regular",
     "difficulty": "easy",
     "name": "Riddle from the world",
@@ -40,7 +40,7 @@
     "correctAnswer": "donald trump"
   },
   {
-    "id": "6",
+    "id": 6,
     "type": "regular",
     "difficulty": "hard",
     "name": "Riddle science",
@@ -48,7 +48,7 @@
     "correctAnswer": "hydrogen"
   },
   {
-    "id": "7",
+    "id": 7,
     "type": "choices",
     "difficulty": "easy",
     "name": "Riddle multiple choice",
@@ -60,5 +60,13 @@
       "green",
       "black"
     ]
+  },
+  {
+    "id": 8,
+    "type": "regular",
+    "difficulty": "hard",
+    "name": "Riddle science",
+    "taskDescription": "What is the lightest element in the periodic table?",
+    "correctAnswer": "hydrogen"
   }
 ]
