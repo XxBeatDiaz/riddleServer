@@ -1,0 +1,64 @@
+[
+  {
+    "id": "1",
+    "type": "regular",
+    "difficulty": "easy",
+    "name": "Riddle math",
+    "taskDescription": "What is 5 + 3?",
+    "correctAnswer": "8"
+  },
+  {
+    "id": "2",
+    "type": "regular",
+    "difficulty": "easy",
+    "name": "Riddle math",
+    "taskDescription": "What is 7 * 3?",
+    "correctAnswer": "21"
+  },
+  {
+    "id": "3",
+    "type": "regular",
+    "difficulty": "medium",
+    "name": "Riddle math",
+    "taskDescription": "What is 7**2",
+    "correctAnswer": "49"
+  },
+  {
+    "id": "4",
+    "type": "regular",
+    "difficulty": "hard",
+    "name": "Riddle math",
+    "taskDescription": "What is root of 64?",
+    "correctAnswer": "8"
+  },
+  {
+    "id": "5",
+    "type": "regular",
+    "difficulty": "easy",
+    "name": "Riddle from the world",
+    "taskDescription": "What is the name of the President of the United States?",
+    "correctAnswer": "donald trump"
+  },
+  {
+    "id": "6",
+    "type": "regular",
+    "difficulty": "hard",
+    "name": "Riddle science",
+    "taskDescription": "What is the lightest element in the periodic table?",
+    "correctAnswer": "hydrogen"
+  },
+  {
+    "id": "7",
+    "type": "choices",
+    "difficulty": "easy",
+    "name": "Riddle multiple choice",
+    "taskDescription": "What is the color of Wood?",
+    "correctAnswer": "2",
+    "choices": [
+      "blue",
+      "brown",
+      "green",
+      "black"
+    ]
+  }
+]
