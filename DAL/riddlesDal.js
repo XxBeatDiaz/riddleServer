@@ -1,29 +1,34 @@
-import * as DAL from "./riddlesDal.js";
+import * as FsDAL from "./fsDal.js";
 
-const PATH = "./riddles.txt";
+const PATH = "../lib/riddles.txt";
 
 async function creatRidle(riddle) {
-    const arrRiddles = await DAL.readDBFile(PATH);
+    const arrRiddles = await FsDAL.readDBFile(PATH);
     if (!isRiddleExists(riddle.id, arrRiddles)) {
         arrRiddles.push(riddle);
         const strRiddles = JSON.stringify(arrRiddles, null, 2);
-        await DAL.writeDBFile(PATH, strRiddles)
+        await FsDAL.writeDBFile(PATH, strRiddles)
     }
 }
 
-async function readRiddle(riddleId) {
+async function readRiddle(riddleId = null) {
+    const arrRiddles = await FsDAL.readDBFile(PATH);
+    if (!riddleId) {
+        return arrRiddles;
+    }
+
     let riddle;
-    const arrRiddles = await DAL.readDBFile(PATH);
     for (const currentRiddle of arrRiddles) {
         if (currentRiddle.id === riddleId) {
             riddle = currentRiddle;
+            break;
         }
     }
     return riddle;
 }
 
 async function updateRiddle(riddle) {
-    const arrRiddles = await DAL.readDBFile(PATH);
+    const arrRiddles = await FsDAL.readDBFile(PATH);
 
     if (!isRiddleExists(riddle.id, arrRiddles)) {
         creatRidle(riddle);
@@ -37,11 +42,11 @@ async function updateRiddle(riddle) {
         }
     }
     const strRiddles = JSON.stringify(arrRiddles, null, 2);
-    await DAL.writeDBFile(PATH, strRiddles)
+    await FsDAL.writeDBFile(PATH, strRiddles)
 }
 
 async function deleteRiddle(riddleId) {
-    const arrRiddles = await DAL.readDBFile(PATH);
+    const arrRiddles = await FsDAL.readDBFile(PATH);
     if (isRiddleExists(riddleId, arrRiddles)) {
         for (const riddle of arrRiddles) {
             if (riddle.id === riddleId) {
@@ -51,7 +56,7 @@ async function deleteRiddle(riddleId) {
         }
     }
     const strRiddles = JSON.stringify(arrRiddles, null, 2);
-    await DAL.writeDBFile(PATH, strRiddles)
+    await FsDAL.writeDBFile(PATH, strRiddles)
 }
 
 //Helper func
