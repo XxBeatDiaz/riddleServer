@@ -1,4 +1,3 @@
-
 node_modules/
 npm-debug.log*
 yarn-debug.log*
@@ -9,6 +8,7 @@ pnpm-debug.log*
 .env.test
 .env.production
 .env.local
+.eslintrc.json
 
 dist/
 build/

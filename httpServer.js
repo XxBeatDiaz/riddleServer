@@ -1,16 +1,10 @@
-import http from "http";
-import routes from "./routes/riddleRoutes.js";
+import express from "express";
 
-const server = http.createServer((req, res) => {
-    console.log(req.method);
-    console.log("11",routes[req.method][req.url]);
-    
+const app = express();
+const PORT = 3000;
 
-    if (routes[req.method][req.url]) {
-        routes[req.method][req.url](req, res);
-    }
+app.use(express.json());
+
+app.listen(PORT, () => {
+    console.log(`run: http://localhost:${PORT}`);
 });
-server.listen(3000);
-
-
-
