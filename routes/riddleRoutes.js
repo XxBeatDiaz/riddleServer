@@ -1,18 +1,17 @@
-function riddleRoutes(req, res){
-    switch (req.method) {
-        case 'GET':
-            
-            break;
-        case 'POST':
+import express from "express";
 
-            break;
-        case 'UPDATE':
+const riddleRoutes = express.Router();
 
-            break;
-        case 'DELETE':
+// Create a new riddle
+riddleRoutes.post('/create')
 
-            break;
-        default:
-            break;
-    }
-}
+// Read riddle by id
+riddleRoutes.get('/:riddleId')
+
+// Update an existing riddle
+riddleRoutes.put('/update')
+
+// Delete a riddle by id
+riddleRoutes.delete('/delete')
+
+export default riddleRoutes;

@@ -8,7 +8,6 @@ pnpm-debug.log*
 .env.test
 .env.production
 .env.local
-.eslintrc.json
 
 dist/
 build/
