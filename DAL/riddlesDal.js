@@ -3,7 +3,7 @@ import * as FsDAL from './fsDal.js';
 const PATH = '../lib/riddles.txt';
 
 // Creates a new riddle if it doesn't already exist
-async function createRiddle(riddle) {
+export async function createRiddle(riddle) {
     const riddlesArray = await FsDAL.readDBFile(PATH);
 
     if (isRiddleExists(riddle.id, riddlesArray)) {
@@ -16,7 +16,7 @@ async function createRiddle(riddle) {
 }
 
 // Reads riddle by id
-async function readRiddle(riddleId) {
+export async function readRiddle(riddleId) {
     const riddlesArray = await FsDAL.readDBFile(PATH);
 
     if (!isRiddleExists(riddleId, riddlesArray)) {
@@ -27,7 +27,7 @@ async function readRiddle(riddleId) {
 }
 
 // Updates an existing riddle if it exists
-async function updateRiddle(riddle) {
+export async function updateRiddle(riddle) {
     const riddlesArray = await FsDAL.readDBFile(PATH);
 
     if (!isRiddleExists(riddle.id, riddlesArray)) {
@@ -41,7 +41,7 @@ async function updateRiddle(riddle) {
 }
 
 // Deletes a riddle by id
-async function deleteRiddle(riddleId) {
+export async function deleteRiddle(riddleId) {
     const riddlesArray = await FsDAL.readDBFile(PATH);
 
     if (!isRiddleExists(riddleId, riddlesArray)) {
