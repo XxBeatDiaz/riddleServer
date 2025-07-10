@@ -1,29 +1,47 @@
 import * as FsDAL from './fsDal.js';
 
-const PATH = '../lib/riddles.txt';
+const PATH = './lib/riddlesDB.txt';
 
-async function createRiddle(riddle) {
+// Creates a new riddle if it doesn't already exist
+export async function createRiddle(riddle) {
     const riddlesArray = await FsDAL.readDBFile(PATH);
-    if (!isRiddleExists(riddle.id, riddlesArray)) {
-        riddlesArray.push(riddle);
 
-        await saveRiddles(riddlesArray);
+    if (isRiddleExists(riddle.id, riddlesArray)) {
+        return riddle;
     }
+
+    riddlesArray.push(riddle);
+
+    await saveRiddles(riddlesArray);
 }
 
-async function readRiddle(riddleId = null) {
+// Reads all riddles
+export async function readAllRiddles() {
     const riddlesArray = await FsDAL.readDBFile(PATH);
-    if (!riddleId) {
-        return riddlesArray;
+
+    if (riddlesArray.length === 0) {
+        return;
     }
+
+    return riddlesArray;
+}
+
+// Reads riddle by id
+export async function readRiddle(riddleId) {
+    const riddlesArray = await FsDAL.readDBFile(PATH);
+
+    if (!isRiddleExists(riddleId, riddlesArray)) {
+        return;
+    }
+
     return riddlesArray.find((r) => r.id === riddleId);
 }
 
-async function updateRiddle(riddle) {
+// Updates an existing riddle if it exists
+export async function updateRiddle(riddle) {
     const riddlesArray = await FsDAL.readDBFile(PATH);
 
     if (!isRiddleExists(riddle.id, riddlesArray)) {
-        await createRiddle(riddle);
         return;
     }
 
@@ -31,25 +49,41 @@ async function updateRiddle(riddle) {
     riddlesArray[idx] = riddle;
 
     await saveRiddles(riddlesArray);
+    return {};
 }
 
-async function deleteRiddle(riddleId) {
+// Deletes a riddle by id
+export async function deleteRiddle(riddleId) {
     const riddlesArray = await FsDAL.readDBFile(PATH);
 
-    if (isRiddleExists(riddleId, riddlesArray)) {
-        const idx = riddlesArray.findIndex((r) => r.id === riddleId);
-        riddlesArray.splice(idx, 1);
+    if (!isRiddleExists(riddleId, riddlesArray)) {
+        return;
     }
 
+    const idx = riddlesArray.findIndex((r) => r.id === riddleId);
+    riddlesArray.splice(idx, 1);
+
     await saveRiddles(riddlesArray);
+    return {};
 }
 
-// Helper funcs
+
+// ***Helper functions*** //
+
+// Returns true if riddle with given id exists in the array
 function isRiddleExists(riddleId, riddles) {
+    console.log(`riddle exists: ${riddles.some((r) => r.id === riddleId)}`);
+
     return riddles.some((r) => r.id === riddleId);
 }
 
+// Saves the riddles array to the file
 async function saveRiddles(riddlesArray) {
-    const strRiddles = JSON.stringify(riddlesArray, null, 2);
-    await FsDAL.writeDBFile(PATH, strRiddles);
+    try {
+        const strRiddles = JSON.stringify(riddlesArray, null, 2);
+        await FsDAL.writeDBFile(PATH, strRiddles);
+        console.log("Riddles saved successfully");
+    } catch (error) {
+        log.error(`Error saving riddles: ${error.message}`);
+    }
 }

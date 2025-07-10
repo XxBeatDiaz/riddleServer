@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "node --watch httpServer"
+    "start": "node --watch --env-file=.env app.js"
   },
   "keywords": [],
   "author": "",
