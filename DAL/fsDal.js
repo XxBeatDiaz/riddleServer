@@ -1,6 +1,7 @@
 import fsProms from "fs/promises";
 
-export async function readDBFile(path){
+// Reads riddle database file
+export async function readDBFile(path){    
     try {
         const content = await fsProms.readFile(path, "utf-8");
         return JSON.parse(content)
@@ -9,6 +10,7 @@ export async function readDBFile(path){
     }
 }
 
+// Writes content to the riddle database file
 export async function writeDBFile(path, content) {
     try {
         await fsProms.writeFile(path, content)
