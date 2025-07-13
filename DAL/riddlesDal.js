@@ -20,7 +20,7 @@ export async function readAllRiddles() {
     const riddlesArray = await FsDAL.readDBFile(PATH);
 
     if (riddlesArray.length === 0) {
-        return;
+        return false;
     }
 
     return riddlesArray;
@@ -31,7 +31,7 @@ export async function readRiddle(riddleId) {
     const riddlesArray = await FsDAL.readDBFile(PATH);
 
     if (!isRiddleExists(riddleId, riddlesArray)) {
-        return;
+        return false;
     }
 
     return riddlesArray.find((r) => r.id === riddleId);
@@ -42,29 +42,29 @@ export async function updateRiddle(riddle) {
     const riddlesArray = await FsDAL.readDBFile(PATH);
 
     if (!isRiddleExists(riddle.id, riddlesArray)) {
-        return;
+        return false;
     }
 
     const idx = riddlesArray.findIndex((r) => r.id === riddle.id);
     riddlesArray[idx] = riddle;
 
     await saveRiddles(riddlesArray);
-    return {};
+    return true;
 }
 
 // Deletes a riddle by id
 export async function deleteRiddle(riddleId) {
     const riddlesArray = await FsDAL.readDBFile(PATH);
-
+    
     if (!isRiddleExists(riddleId, riddlesArray)) {
-        return;
+        return false;
     }
 
     const idx = riddlesArray.findIndex((r) => r.id === riddleId);
     riddlesArray.splice(idx, 1);
 
     await saveRiddles(riddlesArray);
-    return;
+    return true;
 }
 
 

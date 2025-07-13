@@ -52,7 +52,7 @@ export async function updateRiddleCtrl(req, res) {
     try {
         const riddle = req.body;
         const isRiddleExists = await riddleDalFuncs.updateRiddle(riddle);
-
+        
         if (!isRiddleExists) {
             return res.status(404).json({ message: "Riddle not found" });
         }
@@ -67,10 +67,10 @@ export async function updateRiddleCtrl(req, res) {
 export async function deleteRiddleCtrl(req, res) {
     try {
         const deleteRiddleId = req.params.deleteId;
-        const riddle = await riddleDalFuncs.deleteRiddle(deleteRiddleId);
+        const isRiddleExists = await riddleDalFuncs.deleteRiddle(deleteRiddleId);
 
-        if (!riddle) {
-            return res.status(404).json({ message: "Riddle not found" });
+        if (!isRiddleExists) {
+            return res.status(404).json({ message: "Riddle deleted or not found" });
         }
 
         return res.status(200).json({ message: "Riddle deleted successfully" });
