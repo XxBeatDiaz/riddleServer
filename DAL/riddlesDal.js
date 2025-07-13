@@ -64,7 +64,7 @@ export async function deleteRiddle(riddleId) {
     riddlesArray.splice(idx, 1);
 
     await saveRiddles(riddlesArray);
-    return {};
+    return;
 }
 
 
