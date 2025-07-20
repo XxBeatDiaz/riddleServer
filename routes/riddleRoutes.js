@@ -1,17 +1,20 @@
 import express from "express";
-import { createRiddleCtrl, readAllRiddlesCtrl, readRiddleCtrl, updateRiddleCtrl, deleteRiddleCtrl} from "../controlers/riddleCtrl.js";
+import { addRiddle, getAllRiddles, getRiddle, updateRiddleCtrl, deleteRiddleCtrl, getRiddlesByTheirDifficulty} from "../ctrl/riddle.ctrl.js";
 import { checkRiddleBody} from "../middlewares/riddleMidd.js";
 
 const riddleRoutes = express.Router();
 
 // Create a new riddle
-riddleRoutes.post('/', checkRiddleBody, createRiddleCtrl);
+riddleRoutes.post('/', checkRiddleBody, addRiddle);
 
 // Read all riddles
-riddleRoutes.get('/', readAllRiddlesCtrl);
+riddleRoutes.get('/', getAllRiddles);
 
 // Read riddle by id
-riddleRoutes.get('/:riddleId', readRiddleCtrl);
+riddleRoutes.get('/:riddleId', getRiddle);
+
+// Read riddle by difficulty
+riddleRoutes.get('/:difficulty', getRiddlesByTheirDifficulty)
 
 // Update an existing riddle
 riddleRoutes.put('/', checkRiddleBody, updateRiddleCtrl);
